@@ -67,8 +67,8 @@ jobs:
           perl -0pi -e 's/(\\s)\\d+(?= Pull request opened\\b)/$1'"${PR_OPENED}"'/' metrics.svg
           perl -0pi -e 's/(\\s)\\d+(?= Issues opened\\b)/$1'"${ISSUES}"'/' metrics.svg
           perl -0pi -e 's/(\\s)\\d+(?= issue comments\\b)/$1'"${ISSUE_COMMENTS}"'/' metrics.svg
-          perl -0pi -e 's/\\n\\s*<div class="field">\\n\\s*<svg[^>]*>.*?<\\/svg>\\n\\s*Following [^\\n]*\\n\\s*<\\/div>//s' metrics.svg
-          perl -0pi -e 's/\\n\\s*<div class="field">\\n\\s*<svg[^>]*>.*?<\\/svg>\\n\\s*Sponsoring [^\\n]*\\n\\s*<\\/div>//s' metrics.svg
+          perl -0pi -e 's/\\n\\s*<div class="field">\\n\\s*<svg[^>]*>[\\s\\S]*?\\n\\s*Following [^\\n]*\\n\\s*<\\/div>//g' metrics.svg
+          perl -0pi -e 's/\\n\\s*<div class="field">\\n\\s*<svg[^>]*>[\\s\\S]*?\\n\\s*Sponsoring [^\\n]*\\n\\s*<\\/div>//g' metrics.svg
 
       - name: Commit and push if changed
         run: |
